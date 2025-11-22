@@ -25,3 +25,63 @@ replay_pid*
 
 # Kotlin Gradle plugin data, see https://kotlinlang.org/docs/whatsnew20.html#new-directory-for-kotlin-data-in-gradle-projects
 .kotlin/
+
+### Gradle ###
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### VS Code ###
+.vscode/
+*.code-workspace
+
+### Eclipse ###
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### macOS ###
+.DS_Store
+
+### Linux ###
+*~
+
+### Windows ###
+Thumbs.db
+desktop.ini
+
+### Application ###
+application-local.yml
+application-local.properties
+
+### JaCoCo Coverage ###
+*.exec
+
+### OWASP Dependency Check ###
+dependency-check-report.html
+dependency-check-report.json
+dependency-check-report.sarif
+
+### Detekt ###
+detekt-report.html
+detekt-report.xml
+detekt-report.txt
+detekt-report.sarif

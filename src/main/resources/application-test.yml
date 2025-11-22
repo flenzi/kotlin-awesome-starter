@@ -1,0 +1,17 @@
+# Test Profile Configuration
+spring:
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+logging:
+  level:
+    root: WARN
+    com.example.company: DEBUG
