@@ -53,14 +53,8 @@ Enhancement suggestions are tracked as GitHub issues. When creating an enhanceme
    # Check code coverage
    ./gradlew jacocoTestCoverageVerification
 
-   # Run static analysis
-   ./gradlew detekt
-
    # Run architecture tests
    ./gradlew test --tests "*ArchitectureTest"
-
-   # Run security scan
-   ./gradlew dependencyCheckAnalyze
    ```
 
 5. **Update documentation**
@@ -169,8 +163,6 @@ mkdir -p src/test/kotlin/com/example/company/domain/newdomain
 1. **Automated Checks**
    - All CI pipeline stages must pass
    - Code coverage must be ≥ 80%
-   - No critical security vulnerabilities
-   - No Detekt violations
    - Architecture tests must pass
 
 2. **Manual Review**
