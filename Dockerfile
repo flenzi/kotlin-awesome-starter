@@ -18,7 +18,7 @@ COPY src src
 RUN gradle bootJar --no-daemon -x test
 
 # Stage 2: Runtime
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:25-jre-alpine
 
 # Create non-root user
 RUN addgroup -S spring && adduser -S spring -G spring
