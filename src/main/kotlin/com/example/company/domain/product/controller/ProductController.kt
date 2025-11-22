@@ -6,7 +6,6 @@ import com.example.company.domain.product.model.UpdateProductRequest
 import com.example.company.domain.product.service.ProductService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
-import kotlinx.serialization.Serializable
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
@@ -81,7 +80,6 @@ class ProductController(
     }
 }
 
-@Serializable
 data class UpdateStockRequest(
     val quantity: Int
 )

@@ -1,7 +1,6 @@
 package com.example.company.domain.user.model
 
 import jakarta.persistence.*
-import kotlinx.serialization.Serializable
 import java.time.Instant
 
 /**
@@ -33,7 +32,6 @@ data class User(
 /**
  * DTO for creating a new user.
  */
-@Serializable
 data class CreateUserRequest(
     val email: String,
     val name: String
@@ -42,7 +40,6 @@ data class CreateUserRequest(
 /**
  * DTO for updating a user.
  */
-@Serializable
 data class UpdateUserRequest(
     val name: String? = null,
     val active: Boolean? = null
@@ -51,14 +48,13 @@ data class UpdateUserRequest(
 /**
  * DTO for user response.
  */
-@Serializable
 data class UserResponse(
     val id: Long,
     val email: String,
     val name: String,
     val active: Boolean,
-    val createdAt: String,
-    val updatedAt: String
+    val createdAt: Instant,
+    val updatedAt: Instant
 ) {
     companion object {
         fun from(user: User): UserResponse = UserResponse(
@@ -66,8 +62,8 @@ data class UserResponse(
             email = user.email,
             name = user.name,
             active = user.active,
-            createdAt = user.createdAt.toString(),
-            updatedAt = user.updatedAt.toString()
+            createdAt = user.createdAt,
+            updatedAt = user.updatedAt
         )
     }
 }

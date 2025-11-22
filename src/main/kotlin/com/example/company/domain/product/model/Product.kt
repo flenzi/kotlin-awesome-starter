@@ -1,7 +1,7 @@
 package com.example.company.domain.product.model
 
+import com.fasterxml.jackson.annotation.JsonFormat
 import jakarta.persistence.*
-import kotlinx.serialization.Serializable
 import java.math.BigDecimal
 import java.time.Instant
 
@@ -40,22 +40,20 @@ data class Product(
 /**
  * DTO for creating a new product.
  */
-@Serializable
 data class CreateProductRequest(
     val name: String,
     val description: String? = null,
-    val price: String, // String to handle BigDecimal serialization
+    val price: BigDecimal,
     val stock: Int = 0
 )
 
 /**
  * DTO for updating a product.
  */
-@Serializable
 data class UpdateProductRequest(
     val name: String? = null,
     val description: String? = null,
-    val price: String? = null,
+    val price: BigDecimal? = null,
     val stock: Int? = null,
     val available: Boolean? = null
 )
@@ -63,27 +61,28 @@ data class UpdateProductRequest(
 /**
  * DTO for product response.
  */
-@Serializable
 data class ProductResponse(
     val id: Long,
     val name: String,
     val description: String?,
-    val price: String,
+    val price: BigDecimal,
     val stock: Int,
     val available: Boolean,
-    val createdAt: String,
-    val updatedAt: String
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
+    val createdAt: Instant,
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
+    val updatedAt: Instant
 ) {
     companion object {
         fun from(product: Product): ProductResponse = ProductResponse(
             id = product.id!!,
             name = product.name,
             description = product.description,
-            price = product.price.toString(),
+            price = product.price,
             stock = product.stock,
             available = product.available,
-            createdAt = product.createdAt.toString(),
-            updatedAt = product.updatedAt.toString()
+            createdAt = product.createdAt,
+            updatedAt = product.updatedAt
         )
     }
 }

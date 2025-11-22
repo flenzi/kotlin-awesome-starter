@@ -16,11 +16,6 @@ spring:
         format_sql: true
         use_sql_comments: true
 
-  # Disable Jackson auto-configuration (we use kotlinx-serialization)
-  autoconfigure:
-    exclude:
-      - org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration
-
 # Actuator Configuration
 management:
   endpoints:

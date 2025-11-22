@@ -29,7 +29,7 @@ class ProductService(
         val product = Product(
             name = request.name,
             description = request.description,
-            price = BigDecimal(request.price),
+            price = request.price,
             stock = request.stock,
             available = request.stock > 0
         )
@@ -81,7 +81,7 @@ class ProductService(
         val updatedProduct = product.copy(
             name = request.name ?: product.name,
             description = request.description ?: product.description,
-            price = request.price?.let { BigDecimal(it) } ?: product.price,
+            price = request.price ?: product.price,
             stock = request.stock ?: product.stock,
             available = request.available ?: product.available,
             updatedAt = Instant.now()

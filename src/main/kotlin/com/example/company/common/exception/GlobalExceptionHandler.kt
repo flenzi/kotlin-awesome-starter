@@ -1,7 +1,6 @@
 package com.example.company.common.exception
 
 import io.github.oshai.kotlinlogging.KotlinLogging
-import kotlinx.serialization.Serializable
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -69,7 +68,6 @@ class GlobalExceptionHandler {
 /**
  * Standard error response format.
  */
-@Serializable
 data class ErrorResponse(
     val timestamp: String,
     val status: Int,
