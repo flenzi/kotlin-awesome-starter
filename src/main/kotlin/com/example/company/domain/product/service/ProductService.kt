@@ -76,7 +76,7 @@ class ProductService(
     /**
      * Update product.
      */
-    fun updateProduct(id: Long, request: UpdateProductRequest): Product {
+    fun updateProduct(id: UUID, request: UpdateProductRequest): Product {
         val product = getProductById(id)
 
         val updatedProduct = product.copy(
@@ -105,7 +105,7 @@ class ProductService(
     /**
      * Update product stock.
      */
-    fun updateStock(id: Long, quantity: Int): Product {
+    fun updateStock(id: UUID, quantity: Int): Product {
         val product = getProductById(id)
 
         val newStock = product.stock + quantity

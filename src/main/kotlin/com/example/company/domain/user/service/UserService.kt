@@ -68,7 +68,7 @@ class UserService(
     /**
      * Update user.
      */
-    fun updateUser(id: Long, request: UpdateUserRequest): User {
+    fun updateUser(id: UUID, request: UpdateUserRequest): User {
         val user = getUserById(id)
 
         val updatedUser = user.copy(
