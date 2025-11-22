@@ -43,7 +43,7 @@ dependencies {
     runtimeOnly("org.postgresql:postgresql")
 
     // API Documentation
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.0")
 
     // Logging
     implementation("io.github.oshai:kotlin-logging-jvm:7.0.0")
