@@ -150,4 +150,44 @@ class ArchitectureTest {
                 }
             }
     }
+
+    @Test
+    fun `DTOs should not have JPA annotations`() {
+        Konsist
+            .scopeFromProject()
+            .classes()
+            .filter { it.name.endsWith("Request") || it.name.endsWith("Response") }
+            .assertTrue { dto ->
+                dto.annotations.none { annotation ->
+                    annotation.name.startsWith("Entity") ||
+                    annotation.name.startsWith("Table") ||
+                    annotation.name.startsWith("Column")
+                }
+            }
+    }
+
+    @Test
+    fun `services should not depend on controllers`() {
+        Konsist
+            .scopeFromProject()
+            .classes()
+            .withNameEndingWith("Service")
+            .assertTrue { service ->
+                service.properties().none { property ->
+                    property.type?.name?.endsWith("Controller") == true
+                }
+            }
+    }
+
+    @Test
+    fun `data classes should have meaningful names`() {
+        Konsist
+            .scopeFromProject()
+            .classes()
+            .filter { it.hasModifier("data") }
+            .assertTrue { dataClass ->
+                dataClass.name.length >= 3 &&
+                !dataClass.name.matches(Regex(".*[0-9]$")) // No numbers at end
+            }
+    }
 }
