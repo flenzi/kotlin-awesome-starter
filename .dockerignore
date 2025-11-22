@@ -1,0 +1,45 @@
+# .dockerignore - Exclude files from Docker build context
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Build outputs
+build/
+.gradle/
+*.jar
+*.war
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation
+README.md
+LICENSE
+*.md
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+
+# Test reports
+**/test-results/
+**/jacoco/
+dependency-check-report.*
+detekt-report.*
+
+# Logs
+*.log
+
+# Local configuration
+application-local.yml
+application-local.properties
