@@ -9,6 +9,7 @@ import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.Instant
+import java.util.UUID
 
 private val logger = KotlinLogging.logger {}
 
@@ -43,7 +44,7 @@ class UserService(
      * Get user by ID.
      */
     @Transactional(readOnly = true)
-    fun getUserById(id: Long): User {
+    fun getUserById(id: UUID): User {
         return userRepository.findById(id)
             .orElseThrow { ResourceNotFoundException("User not found with id: $id") }
     }
@@ -84,7 +85,7 @@ class UserService(
     /**
      * Delete user.
      */
-    fun deleteUser(id: Long) {
+    fun deleteUser(id: UUID) {
         val user = getUserById(id)
         userRepository.delete(user)
         logger.info { "Deleted user with id: $id" }

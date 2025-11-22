@@ -1,19 +1,22 @@
 package com.example.company.domain.product.model
 
+import com.example.company.common.util.UuidGenerator
 import com.fasterxml.jackson.annotation.JsonFormat
 import jakarta.persistence.*
 import java.math.BigDecimal
 import java.time.Instant
+import java.util.UUID
 
 /**
  * Product entity representing a product in the system.
+ * Uses UUID v7 for time-ordered, distributed-system-friendly IDs.
  */
 @Entity
 @Table(name = "products")
 data class Product(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "UUID")
+    val id: UUID = UuidGenerator.generate(),
 
     @Column(nullable = false)
     val name: String,
@@ -62,7 +65,7 @@ data class UpdateProductRequest(
  * DTO for product response.
  */
 data class ProductResponse(
-    val id: Long,
+    val id: UUID,
     val name: String,
     val description: String?,
     val price: BigDecimal,
@@ -75,7 +78,7 @@ data class ProductResponse(
 ) {
     companion object {
         fun from(product: Product): ProductResponse = ProductResponse(
-            id = product.id!!,
+            id = product.id,
             name = product.name,
             description = product.description,
             price = product.price,

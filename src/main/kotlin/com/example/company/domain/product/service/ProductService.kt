@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.math.BigDecimal
 import java.time.Instant
+import java.util.UUID
 
 private val logger = KotlinLogging.logger {}
 
@@ -43,7 +44,7 @@ class ProductService(
      * Get product by ID.
      */
     @Transactional(readOnly = true)
-    fun getProductById(id: Long): Product {
+    fun getProductById(id: UUID): Product {
         return productRepository.findById(id)
             .orElseThrow { ResourceNotFoundException("Product not found with id: $id") }
     }
@@ -95,7 +96,7 @@ class ProductService(
     /**
      * Delete product.
      */
-    fun deleteProduct(id: Long) {
+    fun deleteProduct(id: UUID) {
         val product = getProductById(id)
         productRepository.delete(product)
         logger.info { "Deleted product with id: $id" }

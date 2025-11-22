@@ -1,17 +1,20 @@
 package com.example.company.domain.user.model
 
+import com.example.company.common.util.UuidGenerator
 import jakarta.persistence.*
 import java.time.Instant
+import java.util.UUID
 
 /**
  * User entity representing a user in the system.
+ * Uses UUID v7 for time-ordered, distributed-system-friendly IDs.
  */
 @Entity
 @Table(name = "users")
 data class User(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "UUID")
+    val id: UUID = UuidGenerator.generate(),
 
     @Column(nullable = false, unique = true)
     val email: String,
@@ -49,7 +52,7 @@ data class UpdateUserRequest(
  * DTO for user response.
  */
 data class UserResponse(
-    val id: Long,
+    val id: UUID,
     val email: String,
     val name: String,
     val active: Boolean,
@@ -58,7 +61,7 @@ data class UserResponse(
 ) {
     companion object {
         fun from(user: User): UserResponse = UserResponse(
-            id = user.id!!,
+            id = user.id,
             email = user.email,
             name = user.name,
             active = user.active,

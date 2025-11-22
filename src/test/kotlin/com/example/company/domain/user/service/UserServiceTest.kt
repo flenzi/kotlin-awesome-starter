@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import java.time.Instant
 import java.util.*
+import java.util.UUID
 
 class UserServiceTest {
 
@@ -34,7 +35,7 @@ class UserServiceTest {
         )
 
         val savedUser = User(
-            id = 1L,
+            id = UUID.randomUUID(),
             email = request.email,
             name = request.name
         )
@@ -72,7 +73,7 @@ class UserServiceTest {
 
     @Test
     fun `should get user by id successfully`() {
-        val userId = 1L
+        val userId = UUID.randomUUID()
         val user = User(
             id = userId,
             email = "test@example.com",
@@ -90,7 +91,7 @@ class UserServiceTest {
 
     @Test
     fun `should throw exception when user not found`() {
-        val userId = 999L
+        val userId = UUID.randomUUID()
 
         every { userRepository.findById(userId) } returns Optional.empty()
 
@@ -103,7 +104,7 @@ class UserServiceTest {
 
     @Test
     fun `should update user successfully`() {
-        val userId = 1L
+        val userId = UUID.randomUUID()
         val existingUser = User(
             id = userId,
             email = "test@example.com",
@@ -136,7 +137,7 @@ class UserServiceTest {
 
     @Test
     fun `should delete user successfully`() {
-        val userId = 1L
+        val userId = UUID.randomUUID()
         val user = User(
             id = userId,
             email = "test@example.com",
@@ -155,8 +156,8 @@ class UserServiceTest {
     @Test
     fun `should get all active users`() {
         val activeUsers = listOf(
-            User(id = 1L, email = "user1@example.com", name = "User 1", active = true),
-            User(id = 2L, email = "user2@example.com", name = "User 2", active = true)
+            User(id = UUID.randomUUID(), email = "user1@example.com", name = "User 1", active = true),
+            User(id = UUID.randomUUID(), email = "user2@example.com", name = "User 2", active = true)
         )
 
         every { userRepository.findByActiveTrue() } returns activeUsers

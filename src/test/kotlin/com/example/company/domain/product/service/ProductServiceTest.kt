@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import java.math.BigDecimal
 import java.util.*
+import java.util.UUID
 
 class ProductServiceTest {
 
@@ -36,7 +37,7 @@ class ProductServiceTest {
         )
 
         val savedProduct = Product(
-            id = 1L,
+            id = UUID.randomUUID(),
             name = request.name,
             description = request.description,
             price = request.price,
@@ -58,7 +59,7 @@ class ProductServiceTest {
 
     @Test
     fun `should get product by id successfully`() {
-        val productId = 1L
+        val userId = UUID.randomUUID()
         val product = Product(
             id = productId,
             name = "Test Product",
@@ -77,7 +78,7 @@ class ProductServiceTest {
 
     @Test
     fun `should throw exception when product not found`() {
-        val productId = 999L
+        val userId = UUID.randomUUID()
 
         every { productRepository.findById(productId) } returns Optional.empty()
 
@@ -90,7 +91,7 @@ class ProductServiceTest {
 
     @Test
     fun `should update product successfully`() {
-        val productId = 1L
+        val userId = UUID.randomUUID()
         val existingProduct = Product(
             id = productId,
             name = "Old Name",
@@ -125,7 +126,7 @@ class ProductServiceTest {
 
     @Test
     fun `should update stock successfully`() {
-        val productId = 1L
+        val userId = UUID.randomUUID()
         val product = Product(
             id = productId,
             name = "Test Product",
@@ -147,7 +148,7 @@ class ProductServiceTest {
 
     @Test
     fun `should throw exception when reducing stock below zero`() {
-        val productId = 1L
+        val userId = UUID.randomUUID()
         val product = Product(
             id = productId,
             name = "Test Product",
@@ -170,8 +171,8 @@ class ProductServiceTest {
     fun `should search products by name`() {
         val searchTerm = "test"
         val products = listOf(
-            Product(id = 1L, name = "Test Product 1", price = BigDecimal("10.00")),
-            Product(id = 2L, name = "Test Product 2", price = BigDecimal("20.00"))
+            Product(id = UUID.randomUUID(), name = "Test Product 1", price = BigDecimal("10.00")),
+            Product(id = UUID.randomUUID(), name = "Test Product 2", price = BigDecimal("20.00"))
         )
 
         every { productRepository.findByNameContainingIgnoreCase(searchTerm) } returns products

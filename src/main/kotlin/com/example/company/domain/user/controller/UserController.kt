@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import java.util.UUID
 
 /**
  * REST controller for user operations.
@@ -29,7 +30,7 @@ class UserController(
 
     @GetMapping("/{id}")
     @Operation(summary = "Get user by ID")
-    fun getUserById(@PathVariable id: Long): UserResponse {
+    fun getUserById(@PathVariable id: UUID): UserResponse {
         val user = userService.getUserById(id)
         return UserResponse.from(user)
     }
@@ -59,7 +60,7 @@ class UserController(
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Delete user")
-    fun deleteUser(@PathVariable id: Long) {
+    fun deleteUser(@PathVariable id: UUID) {
         userService.deleteUser(id)
     }
 }

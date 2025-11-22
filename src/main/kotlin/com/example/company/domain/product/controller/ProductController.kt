@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import java.util.UUID
 
 /**
  * REST controller for product operations.
@@ -29,7 +30,7 @@ class ProductController(
 
     @GetMapping("/{id}")
     @Operation(summary = "Get product by ID")
-    fun getProductById(@PathVariable id: Long): ProductResponse {
+    fun getProductById(@PathVariable id: UUID): ProductResponse {
         val product = productService.getProductById(id)
         return ProductResponse.from(product)
     }
@@ -75,7 +76,7 @@ class ProductController(
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Delete product")
-    fun deleteProduct(@PathVariable id: Long) {
+    fun deleteProduct(@PathVariable id: UUID) {
         productService.deleteProduct(id)
     }
 }

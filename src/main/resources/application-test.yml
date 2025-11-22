@@ -3,7 +3,7 @@ spring:
   jpa:
     show-sql: false
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
 
   datasource:
     url: jdbc:h2:mem:testdb
