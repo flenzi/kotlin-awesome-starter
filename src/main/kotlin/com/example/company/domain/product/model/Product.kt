@@ -1,8 +1,11 @@
 package com.example.company.domain.product.model
 
+import com.example.company.common.serialization.BigDecimalSerializer
+import com.example.company.common.serialization.InstantSerializer
+import com.example.company.common.serialization.UUIDSerializer
 import com.example.company.common.util.UuidGenerator
-import com.fasterxml.jackson.annotation.JsonFormat
 import jakarta.persistence.*
+import kotlinx.serialization.Serializable
 import java.math.BigDecimal
 import java.time.Instant
 import java.util.UUID
@@ -43,9 +46,11 @@ data class Product(
 /**
  * DTO for creating a new product.
  */
+@Serializable
 data class CreateProductRequest(
     val name: String,
     val description: String? = null,
+    @Serializable(with = BigDecimalSerializer::class)
     val price: BigDecimal,
     val stock: Int = 0
 )
@@ -53,9 +58,11 @@ data class CreateProductRequest(
 /**
  * DTO for updating a product.
  */
+@Serializable
 data class UpdateProductRequest(
     val name: String? = null,
     val description: String? = null,
+    @Serializable(with = BigDecimalSerializer::class)
     val price: BigDecimal? = null,
     val stock: Int? = null,
     val available: Boolean? = null
@@ -64,16 +71,19 @@ data class UpdateProductRequest(
 /**
  * DTO for product response.
  */
+@Serializable
 data class ProductResponse(
+    @Serializable(with = UUIDSerializer::class)
     val id: UUID,
     val name: String,
     val description: String?,
+    @Serializable(with = BigDecimalSerializer::class)
     val price: BigDecimal,
     val stock: Int,
     val available: Boolean,
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
+    @Serializable(with = InstantSerializer::class)
     val createdAt: Instant,
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
+    @Serializable(with = InstantSerializer::class)
     val updatedAt: Instant
 ) {
     companion object {

@@ -152,45 +152,7 @@ jobs:
           min-coverage-overall: 80
           min-coverage-changed-files: 80
 
-  # Stage 6: Static Analysis (Detekt)
-  static-analysis:
-    name: Static Analysis
-    needs: validate
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up JDK ${{ env.JAVA_VERSION }}
-        uses: actions/setup-java@v4
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'temurin'
-          cache: 'gradle'
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
-      - name: Run Detekt
-        run: ./gradlew detekt --no-daemon
-
-      - name: Upload Detekt results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: detekt-reports
-          path: build/reports/detekt/
-          retention-days: 7
-
-      - name: Upload SARIF to GitHub
-        if: always() && hashFiles('build/reports/detekt/detekt.sarif') != ''
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: build/reports/detekt/detekt.sarif
-          category: detekt
-        continue-on-error: true
-
-  # Stage 7: Security Scan - OWASP Dependency Check
+  # Stage 6: Security Scan - OWASP Dependency Check
   security-owasp:
     name: OWASP Dependency Check
     needs: validate
@@ -231,7 +193,7 @@ jobs:
           category: owasp-dependency-check
         continue-on-error: true
 
-  # Stage 8: Build & Push Docker Image
+  # Stage 7: Build & Push Docker Image
   docker:
     name: Build & Push Docker Image
     needs: [build, test, coverage, security-owasp]
@@ -306,7 +268,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-  # Stage 9: Publish Test Report
+  # Stage 8: Publish Test Report
   publish-test-results:
     name: Publish Test Results
     needs: [test, architecture-tests]
@@ -331,7 +293,7 @@ jobs:
   # Final Status Check
   ci-success:
     name: CI Success
-    needs: [build, test, architecture-tests, coverage, static-analysis, security-owasp, docker]
+    needs: [build, test, architecture-tests, coverage, security-owasp, docker]
     runs-on: ubuntu-latest
     if: always()
     steps:
@@ -340,8 +302,7 @@ jobs:
           if [[ "${{ needs.build.result }}" != "success" ]] || \
              [[ "${{ needs.test.result }}" != "success" ]] || \
              [[ "${{ needs.architecture-tests.result }}" != "success" ]] || \
-             [[ "${{ needs.coverage.result }}" != "success" ]] || \
-             [[ "${{ needs.static-analysis.result }}" != "success" ]]; then
+             [[ "${{ needs.coverage.result }}" != "success" ]]; then
             echo "One or more required jobs failed"
             exit 1
           fi

@@ -12,11 +12,12 @@ This is an **opinionated** Spring Boot starter template designed to accelerate n
 ### What Makes This Awesome?
 
 - **Modern Stack**: Kotlin 2.1.0 + Spring Boot 3.4.0 + Gradle 8.11 with Kotlin DSL
-- **Kotlin-First**: Uses `jackson-module-kotlin` for JSON, `kotlin-logging` for logging
+- **Kotlin-First**: Uses `kotlinx-serialization` for JSON, `kotlin-logging` for logging, UUID v7 for entity IDs
 - **Domain-Driven Design**: Clean architecture with domains containing controllers, services, repositories, and models
 - **Architecture Enforcement**: Konsist tests ensure your team follows the established patterns
+- **Database Migrations**: Liquibase for version-controlled schema management
 - **Security Built-In**: OWASP Dependency Check + Trivy container scanning in CI/CD
-- **Quality Gates**: 80% code coverage requirement with JaCoCo + Detekt static analysis
+- **Quality Gates**: 80% code coverage requirement with JaCoCo
 - **Automated Updates**: Dependabot configured for dependencies, GitHub Actions, and Docker base images
 - **Production-Ready**: Multi-stage Docker builds, health checks, non-root user, optimized JVM settings
 - **Observable**: Spring Boot Actuator with metrics, health checks, and Prometheus support
@@ -125,13 +126,15 @@ mkdir -p src/test/kotlin/com/example/company/domain/order
 - **Java** 21 LTS - Runtime platform
 
 ### Kotlin-Specific Libraries
-- **jackson-module-kotlin** - JSON serialization with Kotlin support
+- **kotlinx-serialization** - Kotlin-native JSON serialization
 - **kotlin-reflect** - Reflection for Spring
 - **kotlinx-coroutines** - Asynchronous programming
 - **kotlin-logging** - Idiomatic Kotlin logging
 
 ### Data & Persistence
 - **Spring Data JPA** - Database abstraction
+- **Liquibase** - Database migration management
+- **UUID v7** - Time-ordered UUIDs (RFC 9562) for entity IDs
 - **H2 Database** - In-memory database for development
 - **PostgreSQL** - Production database driver
 
@@ -143,7 +146,7 @@ mkdir -p src/test/kotlin/com/example/company/domain/order
 
 ### Code Quality & Security
 - **JaCoCo** - Code coverage (80% minimum)
-- **Detekt** - Static code analysis
+- **Konsist** - Architecture testing and enforcement
 - **OWASP Dependency Check** - CVE scanning
 - **Trivy** - Container vulnerability scanning
 
@@ -194,9 +197,6 @@ DATABASE_PASSWORD=your-secure-password
 # Verify coverage thresholds
 ./gradlew jacocoTestCoverageVerification
 
-# Run static analysis
-./gradlew detekt
-
 # Run security scan
 ./gradlew dependencyCheckAnalyze
 ```
@@ -210,13 +210,11 @@ The GitHub Actions pipeline includes:
 3. **Test** - Unit & integration tests
 4. **Architecture Tests** - Konsist validation
 5. **Code Coverage** - JaCoCo report + 80% threshold check
-6. **Static Analysis** - Detekt code quality
-7. **Security Scan - OWASP** - CVE detection in dependencies
-8. **Security Scan - Trivy** - Container vulnerability scanning
-9. **Docker Build & Push** - Multi-stage optimized images
-10. **Publish Reports** - Test results and coverage reports
+6. **Security Scan - OWASP** - CVE detection in dependencies
+7. **Docker Build & Push** - Multi-stage optimized images with Trivy scanning
+8. **Publish Reports** - Test results and coverage reports
 
-All results are uploaded to GitHub Security tab and as workflow artifacts.
+All security results are uploaded to GitHub Security tab and as workflow artifacts.
 
 ## Security Features
 
@@ -328,8 +326,7 @@ Follow the existing domain structure (user/product) and the architecture tests w
 ### Code Quality Requirements
 - All tests must pass
 - Code coverage ≥ 80%
-- No Detekt violations
-- Architecture tests must pass
+- Architecture tests (Konsist) must pass
 - No high/critical security vulnerabilities
 
 ## License
@@ -343,7 +340,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Roadmap
 
-- [ ] Add Flyway/Liquibase for database migrations
+- [x] Add Liquibase for database migrations
 - [ ] Add Redis caching example
 - [ ] Add Kafka/RabbitMQ messaging example
 - [ ] Add GraphQL support

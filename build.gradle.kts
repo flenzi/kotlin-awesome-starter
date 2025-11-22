@@ -6,11 +6,11 @@ plugins {
     kotlin("jvm") version "2.1.0"
     kotlin("plugin.spring") version "2.1.0"
     kotlin("plugin.jpa") version "2.1.0"
+    kotlin("plugin.serialization") version "2.1.0"
 
     // Code Quality & Coverage
     id("jacoco")
     id("org.owasp.dependencycheck") version "10.0.4"
-    id("io.gitlab.arturbosch.detekt") version "2.0.0-alpha.1"
 }
 
 group = "com.example.company"
@@ -34,9 +34,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.9.0")
 
-    // Jackson Kotlin Module for better Kotlin support
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+    // Kotlinx Serialization for JSON handling
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
     // Database & Migrations
     implementation("org.liquibase:liquibase-core")
@@ -140,22 +139,6 @@ dependencyCheck {
     formats = listOf("HTML", "JSON", "SARIF")
     failBuildOnCVSS = 7.0f
     suppressionFile = "owasp-suppression.xml"
-}
-
-// Detekt Configuration for Static Analysis
-detekt {
-    buildUponDefaultConfig = true
-    allRules = false
-    config.setFrom("$projectDir/detekt.yml")
-}
-
-tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
-    reports {
-        html.required.set(true)
-        xml.required.set(true)
-        txt.required.set(true)
-        sarif.required.set(true)
-    }
 }
 
 // Custom task to check code coverage

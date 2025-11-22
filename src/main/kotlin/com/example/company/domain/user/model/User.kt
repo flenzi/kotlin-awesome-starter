@@ -1,7 +1,10 @@
 package com.example.company.domain.user.model
 
+import com.example.company.common.serialization.InstantSerializer
+import com.example.company.common.serialization.UUIDSerializer
 import com.example.company.common.util.UuidGenerator
 import jakarta.persistence.*
+import kotlinx.serialization.Serializable
 import java.time.Instant
 import java.util.UUID
 
@@ -35,6 +38,7 @@ data class User(
 /**
  * DTO for creating a new user.
  */
+@Serializable
 data class CreateUserRequest(
     val email: String,
     val name: String
@@ -43,6 +47,7 @@ data class CreateUserRequest(
 /**
  * DTO for updating a user.
  */
+@Serializable
 data class UpdateUserRequest(
     val name: String? = null,
     val active: Boolean? = null
@@ -51,12 +56,16 @@ data class UpdateUserRequest(
 /**
  * DTO for user response.
  */
+@Serializable
 data class UserResponse(
+    @Serializable(with = UUIDSerializer::class)
     val id: UUID,
     val email: String,
     val name: String,
     val active: Boolean,
+    @Serializable(with = InstantSerializer::class)
     val createdAt: Instant,
+    @Serializable(with = InstantSerializer::class)
     val updatedAt: Instant
 ) {
     companion object {
