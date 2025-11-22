@@ -4,7 +4,10 @@ import com.example.company.common.serialization.BigDecimalSerializer
 import com.example.company.common.serialization.InstantSerializer
 import com.example.company.common.serialization.UUIDSerializer
 import com.example.company.common.util.UuidGenerator
-import jakarta.persistence.*
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.Id
+import jakarta.persistence.Table
 import kotlinx.serialization.Serializable
 import java.math.BigDecimal
 import java.time.Instant

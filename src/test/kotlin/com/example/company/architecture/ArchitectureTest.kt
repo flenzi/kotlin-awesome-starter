@@ -138,4 +138,16 @@ class ArchitectureTest {
                 it.resideInPackage("..model..")
             }
     }
+
+    @Test
+    fun `no wildcard imports are used`() {
+        Konsist
+            .scopeFromProject()
+            .files
+            .assertTrue { file ->
+                file.imports.none { import ->
+                    import.isWildcard
+                }
+            }
+    }
 }
