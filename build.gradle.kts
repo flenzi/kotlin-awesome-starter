@@ -10,7 +10,7 @@ plugins {
 
     // Code Quality & Coverage
     id("jacoco")
-    id("org.owasp.dependencycheck") version "10.0.4"
+    id("org.owasp.dependencycheck") version "12.1.9"
 }
 
 group = "com.example.company"
