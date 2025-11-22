@@ -59,7 +59,7 @@ class ProductServiceTest {
 
     @Test
     fun `should get product by id successfully`() {
-        val userId = UUID.randomUUID()
+        val productId = UUID.randomUUID()
         val product = Product(
             id = productId,
             name = "Test Product",
@@ -78,7 +78,7 @@ class ProductServiceTest {
 
     @Test
     fun `should throw exception when product not found`() {
-        val userId = UUID.randomUUID()
+        val productId = UUID.randomUUID()
 
         every { productRepository.findById(productId) } returns Optional.empty()
 
@@ -91,7 +91,7 @@ class ProductServiceTest {
 
     @Test
     fun `should update product successfully`() {
-        val userId = UUID.randomUUID()
+        val productId = UUID.randomUUID()
         val existingProduct = Product(
             id = productId,
             name = "Old Name",
@@ -126,7 +126,7 @@ class ProductServiceTest {
 
     @Test
     fun `should update stock successfully`() {
-        val userId = UUID.randomUUID()
+        val productId = UUID.randomUUID()
         val product = Product(
             id = productId,
             name = "Test Product",
@@ -148,7 +148,7 @@ class ProductServiceTest {
 
     @Test
     fun `should throw exception when reducing stock below zero`() {
-        val userId = UUID.randomUUID()
+        val productId = UUID.randomUUID()
         val product = Product(
             id = productId,
             name = "Test Product",
