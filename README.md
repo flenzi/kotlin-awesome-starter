@@ -16,7 +16,7 @@ This is an **opinionated** Spring Boot starter template designed to accelerate n
 - **Domain-Driven Design**: Clean architecture with domains containing controllers, services, repositories, and models
 - **Architecture Enforcement**: Konsist tests ensure your team follows the established patterns
 - **Database Migrations**: Liquibase for version-controlled schema management
-- **Security Built-In**: OWASP Dependency Check + Trivy container scanning in CI/CD
+- **Security Built-In**: Trivy container scanning + Dependabot automated updates
 - **Quality Gates**: 80% code coverage requirement with JaCoCo
 - **Automated Updates**: Dependabot configured for dependencies, GitHub Actions, and Docker base images
 - **Production-Ready**: Multi-stage Docker builds, health checks, non-root user, optimized JVM settings
@@ -147,8 +147,8 @@ mkdir -p src/test/kotlin/com/example/company/domain/order
 ### Code Quality & Security
 - **JaCoCo** - Code coverage (80% minimum)
 - **Konsist** - Architecture testing and enforcement
-- **OWASP Dependency Check** - CVE scanning
 - **Trivy** - Container vulnerability scanning
+- **Dependabot** - Automated dependency updates
 
 ### Documentation
 - **SpringDoc OpenAPI** - Automatic API documentation
@@ -196,9 +196,6 @@ DATABASE_PASSWORD=your-secure-password
 
 # Verify coverage thresholds
 ./gradlew jacocoTestCoverageVerification
-
-# Run security scan
-./gradlew dependencyCheckAnalyze
 ```
 
 ## CI/CD Pipeline
@@ -210,18 +207,12 @@ The GitHub Actions pipeline includes:
 3. **Test** - Unit & integration tests
 4. **Architecture Tests** - Konsist validation
 5. **Code Coverage** - JaCoCo report + 80% threshold check
-6. **Security Scan - OWASP** - CVE detection in dependencies
-7. **Docker Build & Push** - Multi-stage optimized images with Trivy scanning
-8. **Publish Reports** - Test results and coverage reports
+6. **Docker Build & Push** - Multi-stage optimized images with Trivy scanning
+7. **Publish Reports** - Test results and coverage reports
 
-All security results are uploaded to GitHub Security tab and as workflow artifacts.
+Security scanning results are uploaded to GitHub Security tab and as workflow artifacts.
 
 ## Security Features
-
-### Dependency Scanning
-- **OWASP Dependency Check** runs on every CI build
-- Fails build on CVSS score ≥ 7.0
-- Results uploaded to GitHub Security tab
 
 ### Container Scanning
 - **Trivy** scans Docker images for vulnerabilities

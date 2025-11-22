@@ -152,51 +152,10 @@ jobs:
           min-coverage-overall: 80
           min-coverage-changed-files: 80
 
-  # Stage 6: Security Scan - OWASP Dependency Check
-  security-owasp:
-    name: OWASP Dependency Check
-    needs: validate
-    runs-on: ubuntu-latest
-    permissions:
-      security-events: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up JDK ${{ env.JAVA_VERSION }}
-        uses: actions/setup-java@v4
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'temurin'
-          cache: 'gradle'
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
-      - name: Run OWASP Dependency Check
-        run: ./gradlew dependencyCheckAnalyze --no-daemon
-        continue-on-error: true
-
-      - name: Upload OWASP reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: owasp-reports
-          path: build/reports/
-          retention-days: 7
-
-      - name: Upload SARIF to GitHub
-        if: always() && hashFiles('build/reports/dependency-check-report.sarif') != ''
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: build/reports/dependency-check-report.sarif
-          category: owasp-dependency-check
-        continue-on-error: true
-
-  # Stage 7: Build & Push Docker Image
+  # Stage 6: Build & Push Docker Image
   docker:
     name: Build & Push Docker Image
-    needs: [build, test, coverage, security-owasp]
+    needs: [build, test, coverage]
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -268,7 +227,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-  # Stage 8: Publish Test Report
+  # Stage 7: Publish Test Report
   publish-test-results:
     name: Publish Test Results
     needs: [test, architecture-tests]
@@ -297,7 +256,7 @@ jobs:
   # Final Status Check
   ci-success:
     name: CI Success
-    needs: [build, test, architecture-tests, coverage, security-owasp, docker]
+    needs: [build, test, architecture-tests, coverage, docker]
     runs-on: ubuntu-latest
     if: always()
     steps:

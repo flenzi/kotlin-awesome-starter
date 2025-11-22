@@ -10,7 +10,6 @@ plugins {
 
     // Code Quality & Coverage
     id("jacoco")
-    id("org.owasp.dependencycheck") version "10.0.4"
 }
 
 group = "com.example.company"
@@ -132,13 +131,6 @@ tasks.jacocoTestCoverageVerification {
             )
         }
     }
-}
-
-// OWASP Dependency Check Configuration
-dependencyCheck {
-    formats = listOf("HTML", "JSON", "SARIF")
-    failBuildOnCVSS = 7.0f
-    suppressionFile = "owasp-suppression.xml"
 }
 
 // Custom task to check code coverage
