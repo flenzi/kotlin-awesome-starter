@@ -12,7 +12,7 @@ This is an **opinionated** Spring Boot starter template designed to accelerate n
 ### What Makes This Awesome?
 
 - **Modern Stack**: Kotlin 2.1.0 + Spring Boot 3.4.0 + Gradle 8.11 with Kotlin DSL
-- **Kotlin-First**: Uses `kotlinx-serialization` instead of Jackson, `kotlin-logging` instead of SLF4J wrappers
+- **Kotlin-First**: Uses `jackson-module-kotlin` for JSON, `kotlin-logging` for logging
 - **Domain-Driven Design**: Clean architecture with domains containing controllers, services, repositories, and models
 - **Architecture Enforcement**: Konsist tests ensure your team follows the established patterns
 - **Security Built-In**: OWASP Dependency Check + Trivy container scanning in CI/CD
@@ -125,7 +125,7 @@ mkdir -p src/test/kotlin/com/example/company/domain/order
 - **Java** 21 LTS - Runtime platform
 
 ### Kotlin-Specific Libraries
-- **kotlinx-serialization** - JSON serialization (replaces Jackson)
+- **jackson-module-kotlin** - JSON serialization with Kotlin support
 - **kotlin-reflect** - Reflection for Spring
 - **kotlinx-coroutines** - Asynchronous programming
 - **kotlin-logging** - Idiomatic Kotlin logging

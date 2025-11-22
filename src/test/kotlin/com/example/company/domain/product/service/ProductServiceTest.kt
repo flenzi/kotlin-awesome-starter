@@ -31,7 +31,7 @@ class ProductServiceTest {
         val request = CreateProductRequest(
             name = "Test Product",
             description = "Test Description",
-            price = "99.99",
+            price = BigDecimal("99.99"),
             stock = 10
         )
 
@@ -39,7 +39,7 @@ class ProductServiceTest {
             id = 1L,
             name = request.name,
             description = request.description,
-            price = BigDecimal(request.price),
+            price = request.price,
             stock = request.stock,
             available = true
         )
@@ -100,13 +100,13 @@ class ProductServiceTest {
 
         val updateRequest = UpdateProductRequest(
             name = "New Name",
-            price = "75.00",
+            price = BigDecimal("75.00"),
             stock = 10
         )
 
         val updatedProduct = existingProduct.copy(
             name = updateRequest.name!!,
-            price = BigDecimal(updateRequest.price!!),
+            price = updateRequest.price!!,
             stock = updateRequest.stock!!
         )
 
@@ -116,7 +116,7 @@ class ProductServiceTest {
         val result = productService.updateProduct(productId, updateRequest)
 
         assertEquals(updateRequest.name, result.name)
-        assertEquals(BigDecimal(updateRequest.price!!), result.price)
+        assertEquals(updateRequest.price, result.price)
         assertEquals(updateRequest.stock, result.stock)
 
         verify { productRepository.findById(productId) }
