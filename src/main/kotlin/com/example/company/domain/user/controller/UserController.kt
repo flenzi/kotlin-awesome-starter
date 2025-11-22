@@ -50,7 +50,7 @@ class UserController(
     @PutMapping("/{id}")
     @Operation(summary = "Update user")
     fun updateUser(
-        @PathVariable id: Long,
+        @PathVariable id: UUID,
         @RequestBody request: UpdateUserRequest
     ): UserResponse {
         val user = userService.updateUser(id, request)

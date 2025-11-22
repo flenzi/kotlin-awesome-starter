@@ -56,7 +56,7 @@ class ProductController(
     @PutMapping("/{id}")
     @Operation(summary = "Update product")
     fun updateProduct(
-        @PathVariable id: Long,
+        @PathVariable id: UUID,
         @RequestBody request: UpdateProductRequest
     ): ProductResponse {
         val product = productService.updateProduct(id, request)
@@ -66,7 +66,7 @@ class ProductController(
     @PatchMapping("/{id}/stock")
     @Operation(summary = "Update product stock")
     fun updateStock(
-        @PathVariable id: Long,
+        @PathVariable id: UUID,
         @RequestBody request: UpdateStockRequest
     ): ProductResponse {
         val product = productService.updateStock(id, request.quantity)
