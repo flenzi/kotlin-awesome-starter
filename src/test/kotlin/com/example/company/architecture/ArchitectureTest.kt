@@ -184,10 +184,10 @@ class ArchitectureTest {
         Konsist
             .scopeFromProject()
             .classes()
-            .filter { it.hasModifier("data") }
+            .filter { it.hasDataModifier }
             .assertTrue { dataClass ->
-                dataClass.name.length >= 3 &&
-                !dataClass.name.matches(Regex(".*[0-9]$")) // No numbers at end
+                val endsWithNumber = dataClass.name.lastOrNull()?.isDigit() ?: false
+                dataClass.name.length >= 3 && !endsWithNumber
             }
     }
 }
