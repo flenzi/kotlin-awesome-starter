@@ -4,6 +4,7 @@ import com.lemonappdev.konsist.api.Konsist
 import com.lemonappdev.konsist.api.architecture.KoArchitectureCreator.assertArchitecture
 import com.lemonappdev.konsist.api.architecture.Layer
 import com.lemonappdev.konsist.api.ext.list.withNameEndingWith
+import com.lemonappdev.konsist.api.ext.list.withAnnotationOf
 import com.lemonappdev.konsist.api.verify.assertTrue
 import org.junit.jupiter.api.Test
 
@@ -50,10 +51,7 @@ class ArchitectureTest {
         Konsist
             .scopeFromProject()
             .classes()
-            .withAllAnnotationsOf(
-                org.springframework.web.bind.annotation.RestController::class,
-                org.springframework.stereotype.Controller::class
-            )
+            .withAnnotationOf(org.springframework.web.bind.annotation.RestController::class)
             .assertTrue {
                 it.name.endsWith("Controller")
             }
@@ -64,7 +62,7 @@ class ArchitectureTest {
         Konsist
             .scopeFromProject()
             .classes()
-            .withAllAnnotationsOf(org.springframework.stereotype.Service::class)
+            .withAnnotationOf(org.springframework.stereotype.Service::class)
             .assertTrue {
                 it.name.endsWith("Service")
             }
@@ -75,7 +73,7 @@ class ArchitectureTest {
         Konsist
             .scopeFromProject()
             .interfaces()
-            .withAllAnnotationsOf(org.springframework.stereotype.Repository::class)
+            .withAnnotationOf(org.springframework.stereotype.Repository::class)
             .assertTrue {
                 it.name.endsWith("Repository")
             }
@@ -102,16 +100,14 @@ class ArchitectureTest {
     fun `no circular dependencies between domains`() {
         Konsist
             .scopeFromProject()
-            .packages
-            .filter { it.name.startsWith("com.example.company.domain") }
-            .assertTrue { pkg ->
-                val domainName = pkg.name.split(".").getOrNull(4)
+            .files
+            .filter { it.packagee?.name?.startsWith("com.example.company.domain") == true }
+            .assertTrue { file ->
+                val domainName = file.packagee?.name?.split(".")?.getOrNull(4)
                 if (domainName != null) {
-                    pkg.files.all { file ->
-                        file.imports.none { import ->
-                            import.name.contains("com.example.company.domain") &&
-                                !import.name.contains(domainName)
-                        }
+                    file.imports.none { import ->
+                        import.name.contains("com.example.company.domain") &&
+                            !import.name.contains(domainName)
                     }
                 } else {
                     true
@@ -137,7 +133,7 @@ class ArchitectureTest {
         Konsist
             .scopeFromProject()
             .classes()
-            .withAllAnnotationsOf(jakarta.persistence.Entity::class)
+            .withAnnotationOf(jakarta.persistence.Entity::class)
             .assertTrue {
                 it.resideInPackage("..model..")
             }

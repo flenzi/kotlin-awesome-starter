@@ -65,15 +65,15 @@ dependencies {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf(
+    compilerOptions {
+        freeCompilerArgs.set(listOf(
             "-Xjsr305=strict",           // Strict null-safety
             "-Xjvm-default=all",          // Generate default methods in interfaces
             "-opt-in=kotlin.RequiresOptIn" // Enable experimental APIs
-        )
-        jvmTarget = "21"
-        languageVersion = "2.1"
-        apiVersion = "2.1"
+        ))
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
+        languageVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_1)
+        apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_1)
     }
 }
 
