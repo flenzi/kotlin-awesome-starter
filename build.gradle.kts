@@ -60,7 +60,7 @@ dependencies {
     testImplementation("com.ninja-squad:springmockk:4.0.2")
 
     // Architecture Testing with Konsist
-    testImplementation("com.lemonappdev:konsist:0.16.1")
+    testImplementation("com.lemonappdev:konsist:0.17.3")
 }
 
 tasks.withType<KotlinCompile> {
