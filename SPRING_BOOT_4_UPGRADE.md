@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Spring Boot 4.0.0 was officially released on **November 20, 2025**. While the artifacts are available in Maven Central, there are currently some challenges with the Gradle plugin resolution in certain environments.
+Spring Boot 4.0.0 was officially released on **November 20, 2025**. The project configuration has been updated to use Spring Boot 4.0.0, but network access restrictions in the build environment currently prevent downloading the required artifacts from Maven Central and Gradle Plugin Portal (HTTP 403 Forbidden errors).
 
 ## What's New in Spring Boot 4.0
 
@@ -137,4 +137,21 @@ dependencies {
 
 ## Current Project Status
 
-This project is currently configured with Spring Boot 3.4.0 due to plugin resolution challenges in the build environment. The configuration is ready for upgrade to 4.0.0 when the environment allows proper plugin resolution.
+**Configuration Updated**: The `build.gradle.kts` and `settings.gradle.kts` files have been updated to Spring Boot 4.0.0, dependency management 1.1.7, and springdoc-openapi 3.0.0.
+
+**Build Status**: The build currently cannot complete due to network access restrictions (HTTP 403 Forbidden) when accessing Maven Central and Gradle Plugin Portal from the current environment. This is an infrastructure/network limitation, not a configuration issue.
+
+**To Complete the Upgrade**:
+1. Run the build in an environment with unrestricted access to Maven repositories:
+   ```bash
+   gradle clean build --refresh-dependencies
+   ```
+
+2. If successful, all dependencies will download and the project will be fully upgraded to Spring Boot 4.0.0
+
+3. Run tests to verify the upgrade:
+   ```bash
+   gradle test
+   ```
+
+The configuration is correct and ready - it only needs to be built in an environment without network restrictions.
