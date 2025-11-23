@@ -11,7 +11,7 @@ This is an **opinionated** Spring Boot starter template designed to accelerate n
 
 ### What Makes This Awesome?
 
-- **Modern Stack**: Kotlin 2.1.0 + Spring Boot 3.4.0 + Gradle 8.11 with Kotlin DSL
+- **Modern Stack**: Kotlin 2.1.0 + Spring Boot 4.0.0 + Gradle 8.14 with Kotlin DSL
 - **Kotlin-First**: Uses `kotlinx-serialization` for JSON, `kotlin-logging` for logging, UUID v7 for entity IDs
 - **Domain-Driven Design**: Clean architecture with domains containing controllers, services, repositories, and models
 - **Architecture Enforcement**: Konsist tests ensure your team follows the established patterns
@@ -27,6 +27,7 @@ This is an **opinionated** Spring Boot starter template designed to accelerate n
 ### Prerequisites
 
 - JDK 21
+- Gradle 8.14+ (included via wrapper)
 - Docker (optional, for containerized development)
 
 ### Run Locally
@@ -121,8 +122,8 @@ mkdir -p src/test/kotlin/com/example/company/domain/order
 
 ### Core
 - **Kotlin** 2.1.0 - Modern, concise, safe
-- **Spring Boot** 3.4.0 - Production-ready application framework
-- **Gradle** 8.11.1 with Kotlin DSL - Build automation
+- **Spring Boot** 4.0.0 - Production-ready application framework (Spring Framework 7.0, Jakarta EE 11)
+- **Gradle** 8.14 with Kotlin DSL - Build automation
 - **Java** 21 LTS - Runtime platform
 
 ### Kotlin-Specific Libraries
