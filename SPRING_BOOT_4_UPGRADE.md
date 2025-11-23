@@ -8,6 +8,7 @@ Spring Boot 4.0.0 was officially released on **November 20, 2025**. The project 
 
 ### Requirements
 - **Java 17+** (Java 21 recommended - already configured in this project ✓)
+- **Gradle 8.14+** (Gradle 8.14 configured in this project ✓)
 - **Jakarta EE 11** baseline (Servlet 6.1+)
 - **Spring Framework 7.0**
 
