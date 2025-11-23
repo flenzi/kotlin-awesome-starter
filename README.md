@@ -4,6 +4,16 @@
 
 [![CI Pipeline](https://github.com/flenzi/kotlin-awesome-starter/workflows/CI%20Pipeline/badge.svg)](https://github.com/flenzi/kotlin-awesome-starter/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.0-blue.svg?logo=kotlin)](https://kotlinlang.org)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.0-brightgreen.svg?logo=spring)](https://spring.io/projects/spring-boot)
+[![Java](https://img.shields.io/badge/Java-21-orange.svg?logo=openjdk)](https://openjdk.org/)
+[![Code Coverage](https://img.shields.io/badge/coverage-80%25-brightgreen)](https://github.com/flenzi/kotlin-awesome-starter/actions)
+[![GitHub last commit](https://img.shields.io/github/last-commit/flenzi/kotlin-awesome-starter)](https://github.com/flenzi/kotlin-awesome-starter/commits)
+[![GitHub issues](https://img.shields.io/github/issues/flenzi/kotlin-awesome-starter)](https://github.com/flenzi/kotlin-awesome-starter/issues)
+[![GitHub stars](https://img.shields.io/github/stars/flenzi/kotlin-awesome-starter)](https://github.com/flenzi/kotlin-awesome-starter/stargazers)
+[![Dependabot](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?logo=dependabot)](https://github.com/flenzi/kotlin-awesome-starter/network/updates)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/flenzi/kotlin-awesome-starter/pulls)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/flenzi/kotlin-awesome-starter/graphs/commit-activity)
 
 ## Overview
 
