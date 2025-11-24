@@ -239,7 +239,7 @@ jobs:
       contents: read
     steps:
       - name: Download test results
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: test-results
           path: test-results
