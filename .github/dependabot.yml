@@ -20,6 +20,7 @@ updates:
     commit-message:
       prefix: "chore(deps)"
       include: "scope"
+    auto-merge: true
     groups:
       kotlin:
         patterns:
@@ -52,6 +53,7 @@ updates:
     commit-message:
       prefix: "chore(ci)"
       include: "scope"
+    auto-merge: true
 
   # Docker
   - package-ecosystem: "docker"
@@ -68,3 +70,4 @@ updates:
     commit-message:
       prefix: "chore(docker)"
       include: "scope"
+    auto-merge: true
