@@ -34,8 +34,6 @@ LICENSE
 # Test reports
 **/test-results/
 **/jacoco/
-dependency-check-report.*
-detekt-report.*
 
 # Logs
 *.log

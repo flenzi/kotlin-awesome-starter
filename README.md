@@ -4,6 +4,16 @@
 
 [![CI Pipeline](https://github.com/flenzi/kotlin-awesome-starter/workflows/CI%20Pipeline/badge.svg)](https://github.com/flenzi/kotlin-awesome-starter/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.0-blue.svg?logo=kotlin)](https://kotlinlang.org)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.0-brightgreen.svg?logo=spring)](https://spring.io/projects/spring-boot)
+[![Java](https://img.shields.io/badge/Java-21-orange.svg?logo=openjdk)](https://openjdk.org/)
+[![Code Coverage](https://img.shields.io/badge/coverage-80%25-brightgreen)](https://github.com/flenzi/kotlin-awesome-starter/actions)
+[![GitHub last commit](https://img.shields.io/github/last-commit/flenzi/kotlin-awesome-starter)](https://github.com/flenzi/kotlin-awesome-starter/commits)
+[![GitHub issues](https://img.shields.io/github/issues/flenzi/kotlin-awesome-starter)](https://github.com/flenzi/kotlin-awesome-starter/issues)
+[![GitHub stars](https://img.shields.io/github/stars/flenzi/kotlin-awesome-starter)](https://github.com/flenzi/kotlin-awesome-starter/stargazers)
+[![Dependabot](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?logo=dependabot)](https://github.com/flenzi/kotlin-awesome-starter/network/updates)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/flenzi/kotlin-awesome-starter/pulls)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/flenzi/kotlin-awesome-starter/graphs/commit-activity)
 
 ## Overview
 
@@ -11,12 +21,12 @@ This is an **opinionated** Spring Boot starter template designed to accelerate n
 
 ### What Makes This Awesome?
 
-- **Modern Stack**: Kotlin 2.1.0 + Spring Boot 3.4.0 + Gradle 8.11 with Kotlin DSL
+- **Modern Stack**: Kotlin 2.1.0 + Spring Boot 4.0.0 + Gradle 8.14 with Kotlin DSL
 - **Kotlin-First**: Uses `kotlinx-serialization` for JSON, `kotlin-logging` for logging, UUID v7 for entity IDs
 - **Domain-Driven Design**: Clean architecture with domains containing controllers, services, repositories, and models
 - **Architecture Enforcement**: Konsist tests ensure your team follows the established patterns
 - **Database Migrations**: Liquibase for version-controlled schema management
-- **Security Built-In**: OWASP Dependency Check + Trivy container scanning in CI/CD
+- **Security Built-In**: Trivy container scanning + Dependabot automated updates
 - **Quality Gates**: 80% code coverage requirement with JaCoCo
 - **Automated Updates**: Dependabot configured for dependencies, GitHub Actions, and Docker base images
 - **Production-Ready**: Multi-stage Docker builds, health checks, non-root user, optimized JVM settings
@@ -27,6 +37,7 @@ This is an **opinionated** Spring Boot starter template designed to accelerate n
 ### Prerequisites
 
 - JDK 21
+- Gradle 8.14+ (included via wrapper)
 - Docker (optional, for containerized development)
 
 ### Run Locally
@@ -121,8 +132,8 @@ mkdir -p src/test/kotlin/com/example/company/domain/order
 
 ### Core
 - **Kotlin** 2.1.0 - Modern, concise, safe
-- **Spring Boot** 3.4.0 - Production-ready application framework
-- **Gradle** 8.11.1 with Kotlin DSL - Build automation
+- **Spring Boot** 4.0.0 - Production-ready application framework (Spring Framework 7.0, Jakarta EE 11)
+- **Gradle** 8.14 with Kotlin DSL - Build automation
 - **Java** 21 LTS - Runtime platform
 
 ### Kotlin-Specific Libraries
@@ -147,8 +158,8 @@ mkdir -p src/test/kotlin/com/example/company/domain/order
 ### Code Quality & Security
 - **JaCoCo** - Code coverage (80% minimum)
 - **Konsist** - Architecture testing and enforcement
-- **OWASP Dependency Check** - CVE scanning
 - **Trivy** - Container vulnerability scanning
+- **Dependabot** - Automated dependency updates
 
 ### Documentation
 - **SpringDoc OpenAPI** - Automatic API documentation
@@ -196,9 +207,6 @@ DATABASE_PASSWORD=your-secure-password
 
 # Verify coverage thresholds
 ./gradlew jacocoTestCoverageVerification
-
-# Run security scan
-./gradlew dependencyCheckAnalyze
 ```
 
 ## CI/CD Pipeline
@@ -210,18 +218,12 @@ The GitHub Actions pipeline includes:
 3. **Test** - Unit & integration tests
 4. **Architecture Tests** - Konsist validation
 5. **Code Coverage** - JaCoCo report + 80% threshold check
-6. **Security Scan - OWASP** - CVE detection in dependencies
-7. **Docker Build & Push** - Multi-stage optimized images with Trivy scanning
-8. **Publish Reports** - Test results and coverage reports
+6. **Docker Build & Push** - Multi-stage optimized images with Trivy scanning
+7. **Publish Reports** - Test results and coverage reports
 
-All security results are uploaded to GitHub Security tab and as workflow artifacts.
+Security scanning results are uploaded to GitHub Security tab and as workflow artifacts.
 
 ## Security Features
-
-### Dependency Scanning
-- **OWASP Dependency Check** runs on every CI build
-- Fails build on CVSS score ≥ 7.0
-- Results uploaded to GitHub Security tab
 
 ### Container Scanning
 - **Trivy** scans Docker images for vulnerabilities

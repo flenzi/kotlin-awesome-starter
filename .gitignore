@@ -74,14 +74,3 @@ application-local.properties
 
 ### JaCoCo Coverage ###
 *.exec
-
-### OWASP Dependency Check ###
-dependency-check-report.html
-dependency-check-report.json
-dependency-check-report.sarif
-
-### Detekt ###
-detekt-report.html
-detekt-report.xml
-detekt-report.txt
-detekt-report.sarif
