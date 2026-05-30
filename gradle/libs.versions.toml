@@ -1,0 +1,74 @@
+[versions]
+# Kotlin & Compiler
+kotlin = "2.3.0"
+kotlinPlugin-spring = "2.3.20"
+kotlinPlugin-jpa = "2.3.0"
+kotlinPlugin-serialization = "2.1.0"
+
+# Spring Boot
+springBoot = "4.0.1"
+springDependencyManagement = "1.1.7"
+
+# Kotlinx Libraries
+kotlinx-coroutines = "1.9.0"
+kotlinx-serialization = "1.7.3"
+
+# Spring Boot Starters (managed by dependency-management plugin)
+# These don't need versions when using spring-boot-starter-*
+
+# Database & Migrations
+liquibase = "4.28.0"
+h2 = "2.2.220"
+postgresql = "42.7.3"
+
+# API Documentation
+springdoc-openapi = "3.0.1"
+
+# Logging
+kotlin-logging = "7.0.14"
+
+# Testing
+mockk = "1.14.7"
+springmockk = "5.0.1"
+konsist = "0.16.1"
+
+# Build Tools
+jacoco = "0.8.12"
+
+[libraries]
+# Kotlin
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect" }
+kotlin-stdlib-jdk8 = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8" }
+kotlin-test-junit5 = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit5" }
+
+# Kotlinx - Coroutines
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-reactor = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-reactor", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
+
+# Kotlinx - Serialization
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+
+# Database & Migrations
+liquibase-core = { group = "org.liquibase", name = "liquibase-core", version.ref = "liquibase" }
+h2 = { group = "com.h2database", name = "h2", version.ref = "h2" }
+postgresql = { group = "org.postgresql", name = "postgresql", version.ref = "postgresql" }
+
+# API Documentation
+springdoc-openapi-starter-webmvc-ui = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc-openapi" }
+
+# Logging
+kotlin-logging-jvm = { group = "io.github.oshai", name = "kotlin-logging-jvm", version.ref = "kotlin-logging" }
+
+# Testing
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+springmockk = { group = "com.ninja-squad", name = "springmockk", version.ref = "springmockk" }
+konsist = { group = "com.lemonappdev", name = "konsist", version.ref = "konsist" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlinPlugin-spring" }
+kotlin-jpa = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotlinPlugin-jpa" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinPlugin-serialization" }
+springBoot = { id = "org.springframework.boot", version.ref = "springBoot" }
+springDependencyManagement = { id = "io.spring.dependency-management", version.ref = "springDependencyManagement" }

@@ -1,12 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "4.0.1"
-    id("io.spring.dependency-management") version "1.1.7"
-    kotlin("jvm") version "2.3.0"
-    kotlin("plugin.spring") version "2.3.20"
-    kotlin("plugin.jpa") version "2.3.0"
-    kotlin("plugin.serialization") version "2.1.0"
+    alias(libs.plugins.springBoot)
+    alias(libs.plugins.springDependencyManagement)
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.spring)
+    alias(libs.plugins.kotlin.jpa)
+    alias(libs.plugins.kotlin.serialization)
 
     // Code Quality & Coverage
     id("jacoco")
@@ -28,24 +28,24 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
     // Kotlin Specific Libraries
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.9.0")
+    implementation(libs.kotlin.reflect)
+    implementation(libs.kotlin.stdlib.jdk8)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.reactor)
 
     // Kotlinx Serialization for JSON handling
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+    implementation(libs.kotlinx.serialization.json)
 
     // Database & Migrations
-    implementation("org.liquibase:liquibase-core")
-    runtimeOnly("com.h2database:h2")
-    runtimeOnly("org.postgresql:postgresql")
+    implementation(libs.liquibase.core)
+    runtimeOnly(libs.h2)
+    runtimeOnly(libs.postgresql)
 
     // API Documentation
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.1")
+    implementation(libs.springdoc.openapi.starter.webmvc.ui)
 
     // Logging
-    implementation("io.github.oshai:kotlin-logging-jvm:7.0.14")
+    implementation(libs.kotlin.logging.jvm)
 
     // Development Tools
     developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -54,13 +54,13 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")
-    testImplementation("io.mockk:mockk:1.14.7")
-    testImplementation("com.ninja-squad:springmockk:5.0.1")
+    testImplementation(libs.kotlin.test.junit5)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
+    testImplementation(libs.springmockk)
 
     // Architecture Testing with Konsist
-    testImplementation("com.lemonappdev:konsist:0.16.1")
+    testImplementation(libs.konsist)
 }
 
 tasks.withType<KotlinCompile> {
@@ -83,7 +83,7 @@ tasks.withType<Test> {
 
 // JaCoCo Configuration for Code Coverage
 jacoco {
-    toolVersion = "0.8.12"
+    toolVersion = libs.versions.jacoco.get()
 }
 
 tasks.jacocoTestReport {
