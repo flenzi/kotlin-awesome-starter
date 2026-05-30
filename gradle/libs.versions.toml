@@ -1,12 +1,12 @@
 [versions]
 # Kotlin & Compiler
-kotlin = "2.3.0"
-kotlinPlugin-spring = "2.3.20"
+kotlin = "2.3.20"
+kotlinPlugin-spring = "2.3.21"
 kotlinPlugin-jpa = "2.3.0"
-kotlinPlugin-serialization = "2.1.0"
+kotlinPlugin-serialization = "2.3.21"
 
 # Spring Boot
-springBoot = "4.0.1"
+springBoot = "4.0.6"
 springDependencyManagement = "1.1.7"
 
 # Kotlinx Libraries
@@ -22,15 +22,15 @@ h2 = "2.2.220"
 postgresql = "42.7.3"
 
 # API Documentation
-springdoc-openapi = "3.0.1"
+springdoc-openapi = "3.0.2"
 
 # Logging
-kotlin-logging = "7.0.14"
+kotlin-logging = "8.0.01"
 
 # Testing
-mockk = "1.14.7"
+mockk = "1.14.9"
 springmockk = "5.0.1"
-konsist = "0.16.1"
+konsist = "0.17.3"
 
 # Build Tools
 jacoco = "0.8.12"
