@@ -18,7 +18,7 @@ kotlinx-serialization = "1.7.3"
 
 # Database & Migrations
 liquibase = "4.28.0"
-h2 = "2.2.220"
+h2 = "2.4.240"
 postgresql = "42.7.3"
 
 # API Documentation
