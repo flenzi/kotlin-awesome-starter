@@ -6,7 +6,7 @@ kotlinPlugin-jpa = "2.3.0"
 kotlinPlugin-serialization = "2.3.21"
 
 # Spring Boot
-springBoot = "4.0.6"
+springBoot = "4.1.0"
 springDependencyManagement = "1.1.7"
 
 # Kotlinx Libraries
