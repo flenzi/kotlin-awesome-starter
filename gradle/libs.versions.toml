@@ -17,7 +17,7 @@ kotlinx-serialization = "1.7.3"
 # These don't need versions when using spring-boot-starter-*
 
 # Database & Migrations
-liquibase = "4.28.0"
+liquibase = "5.0.4"
 h2 = "2.2.220"
 postgresql = "42.7.3"
 
